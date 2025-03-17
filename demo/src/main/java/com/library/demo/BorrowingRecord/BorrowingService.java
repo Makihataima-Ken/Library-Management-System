@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.library.demo.Book.Book;
 import com.library.demo.Book.BookRepository;
@@ -25,6 +26,7 @@ public class BorrowingService {
         this.patronRepository = patronRepository;
     }
 
+    @Transactional
     public String borrowBook(Long bookId, Long patronId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
@@ -47,6 +49,7 @@ public class BorrowingService {
         return "Book borrowed successfully.";
     }
 
+    @Transactional
     public String returnBook(Long bookId, Long patronId) {
         BorrowingRecord record = borrowingRecordRepository
                 .findByBookIdAndPatronIdAndReturnDateIsNull(bookId, patronId)
