@@ -1,5 +1,9 @@
 package com.library.demo.Patron;
 
+import java.util.List;
+
+import com.library.demo.BorrowingRecord.BorrowingRecord;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -16,6 +20,9 @@ public class Patron {
 
     @NotBlank(message = "Contact Information is mandatory")
     private String contactInformation;
+
+    @OneToMany(mappedBy = "patron", cascade = CascadeType.ALL)
+    private List<BorrowingRecord> borrowingRecords;
 
     // Constructors
     public Patron() {}

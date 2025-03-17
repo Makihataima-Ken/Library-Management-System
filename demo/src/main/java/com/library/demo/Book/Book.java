@@ -1,6 +1,10 @@
 package com.library.demo.Book;
 
 
+import java.util.List;
+
+import com.library.demo.BorrowingRecord.BorrowingRecord;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +28,9 @@ public class Book {
 
     @NotBlank(message = "ISBN is required")
     private String isbn;
+    
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BorrowingRecord> borrowingRecords;
 
     // Constructors
     public Book() {}
