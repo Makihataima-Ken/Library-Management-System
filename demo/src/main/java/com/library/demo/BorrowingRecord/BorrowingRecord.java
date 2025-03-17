@@ -27,4 +27,25 @@ public class BorrowingRecord {
 
     private LocalDate borrowDate;
     private LocalDate returnDate;
+
+    // setters
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public void setPatron(Patron patron) {
+        this.patron = patron;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+
+
 }
