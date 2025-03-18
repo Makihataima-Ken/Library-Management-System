@@ -46,6 +46,13 @@ public class BorrowingRecord {
         this.returnDate = returnDate;
     }
 
-
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+    
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+    
 
 }
