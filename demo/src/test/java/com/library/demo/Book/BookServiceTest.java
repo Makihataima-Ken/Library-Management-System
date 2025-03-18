@@ -2,12 +2,16 @@ package com.library.demo.Book;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)  // Auto-initialize mocks
 public class BookServiceTest {
 
     @Mock
@@ -21,8 +25,6 @@ public class BookServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this); // Initializes mocks
-
         book1 = new Book("Book Title 1", "Author 1", 2000, "123456");
         book1.setId(1L);
 
@@ -32,8 +34,7 @@ public class BookServiceTest {
 
     @Test
     public void testGetAllBooks() {
-        List<Book> books = Arrays.asList(book1, book2);
-        when(bookRepository.findAll()).thenReturn(books);
+        when(bookRepository.findAll()).thenReturn(Arrays.asList(book1, book2));
 
         List<Book> result = bookService.getAllBooks();
         assertEquals(2, result.size());
@@ -114,4 +115,3 @@ public class BookServiceTest {
         verify(bookRepository, times(1)).findById(99L);
     }
 }
-
